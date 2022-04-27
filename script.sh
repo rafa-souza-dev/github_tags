@@ -19,7 +19,20 @@ then
     read title
     echo "Informe a mensagem da tag: "
     read message
-    echo "Informe a chave SHA: "
+    echo "---------------------------------------------"
+    data=`curl --silent -u $username:$token -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/$owner/$repo/tags | jq '.[] | {name: (.name), SHA: (.commit.sha)}'`
+    ARRAY=()
+    while read line
+    do
+      [[ "$line" != '' ]] && ARRAY+=("$line")
+    done <<< "$data"
+
+    for x in "${ARRAY[@]}"
+    do
+        echo "$x"
+    done
+    echo "---------------------------------------------"
+    echo "Informe a chave SHA (opções acima): "
     read object
 
     curl \
