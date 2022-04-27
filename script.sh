@@ -21,3 +21,11 @@ then
     https://api.github.com/repos/$owner/$repo/git/tags \
     -d '{"tag":"'$title'","message":"'$message'", "object":"83317ad8dc404a11af09689cc365225e88bdb765", "type":"commit"}'
 fi
+
+if [ "$choice" = "n" ]
+then
+    curl \
+    -u $username:$token \
+    -H "Accept: application/vnd.github.v3+json" \
+    https://api.github.com/repos/$owner/$repo/git/refs/tags
+fi
