@@ -27,5 +27,5 @@ then
     curl \
     -u $username:$token \
     -H "Accept: application/vnd.github.v3+json" \
-    https://api.github.com/repos/$owner/$repo/git/refs/tags
+    https://api.github.com/repos/$owner/$repo/tags
 fi
